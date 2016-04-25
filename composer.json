@@ -1,0 +1,17 @@
+{
+    "name": "rayful/toolkit",
+    "description": "A toolkit service for rayful PHP packages.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "kingmax",
+            "email": "kingmaxyang@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "rayful\\Tool\\": "src/"
+        }
+    }
+}
