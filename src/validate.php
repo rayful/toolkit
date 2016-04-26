@@ -11,7 +11,18 @@ namespace rayful\Tool;
 
 trait validate
 {
-    use objectTool;
+    /**
+     * 必须实现这个对象的迭代方法
+     * @return array|\Generator
+     */
+    abstract public function toArray();
+
+    /**
+     * 必须实现这个对象的设入方法
+     * @param array $data
+     * @return void
+     */
+    abstract public function set($data);
 
     /**
      * 根据在PHPDoc里面声明的属性（字段）类型，作出自动类型转换。一般用在保存之前，或写在子类的validate方法里面。

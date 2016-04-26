@@ -16,6 +16,13 @@ trait editor
     protected $_value;
 
     /**
+     * 必须实现这个方法，校验这条记录是否在数据库中存在
+     * (一般在Data基类里面已经实现了这个方法)
+     * @return boolean
+     */
+    abstract public function isExists();
+
+    /**
      * (PHP 5 &gt;= 5.0.0)<br/>
      * Retrieve an external iterator
      * @link http://php.net/manual/en/iteratoraggregate.getiterator.php
@@ -30,7 +37,7 @@ trait editor
             if (
                 $key == "_id" ||
                 preg_match('/edit/', $Property->_ignore) ||
-                (preg_match('/new/', $Property->_ignore) && !$this->_id)
+                (preg_match('/new/', $Property->_ignore) && !$this->isExists())
             )
                 continue;
 
@@ -121,6 +128,9 @@ trait editor
         foreach ($data as $option_value => $option_label) {
             if ($value && is_array($value))
                 $checked = in_array($option_value, $value) ? " checked='checked'" : "";
+            else
+                $checked = "";
+
             echo "<label class='checkbox-inline'>";
             echo "<input type=checkbox name=\"{$key}[]\" value=\"{$option_value}\"{$checked} />";
             echo $option_label;
