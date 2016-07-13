@@ -20,18 +20,24 @@ trait logPlugin
     public $logs;
 
     /**
+     * 最大的日志条数
+     * @return int
+     */
+    abstract function maxLogsNum();
+
+    /**
      * 插入日志
      * @param string $content 日志内容
      * @param string $username 操作人姓名
-     * @param int|null $limit 最大日志数
      */
-    public function addLog($content, $username = '', $limit = null)
+    public function addLog($content, $username = '')
     {
         $Log = new Log();
         $Log->setContent($content);
         $Log->setUsername($username);
+        $Log->initDate();
         $this->logs[] = $Log->toArray();
-        if($limit && count($this->logs)>$limit){
+        if($this->maxLogsNum() && count($this->logs)>$this->maxLogsNum()){
             array_shift($this->logs);   //移除第1条
         }
     }
@@ -40,11 +46,10 @@ trait logPlugin
      * 插入日志并保存
      * @param string $content 日志内容
      * @param string $username 操作人姓名
-     * @param int|null $limit 最大日志数
      */
-    public function saveLog($content, $username = '', $limit = null)
+    public function saveLog($content, $username = '')
     {
-        $this->addLog($content, $username, $limit);
+        $this->addLog($content, $username);
         $this->save();
     }
 
