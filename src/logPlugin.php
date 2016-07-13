@@ -14,7 +14,8 @@ trait logPlugin
 
     /**
      * 帐户日志
-     * @var array|StdLog[]
+     * @var array|Log[]
+     * @name 日志
      */
     public $logs;
 
