@@ -30,19 +30,19 @@ class Log
      * 日志时间
      * @var \MongoDate
      */
-    private $date;
+    public $date;
 
     /**
      * 日志操作用户名
      * @var string
      */
-    private $username;
+    public $username;
 
     /**
      * 日志内容
      * @var string
      */
-    private $content;
+    public $content;
 
     public function __construct($data = null)
     {
