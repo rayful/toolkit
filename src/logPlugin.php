@@ -16,6 +16,7 @@ trait logPlugin
      * 帐户日志
      * @var array|Log[]
      * @name 日志
+     * @ignore editor
      */
     public $logs;
 
