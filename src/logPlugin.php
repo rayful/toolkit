@@ -85,5 +85,29 @@ trait logPlugin
         }
     }
 
+    /**
+     * 方法同上，为求更名
+     * @param int $sort
+     * @return \Generator
+     */
+    public function travelLogs($sort = 1)
+    {
+        yield $this->logs($sort);
+    }
+
+    /**
+     * 获取数组形式的日志
+     * @param int $sort
+     * @return array
+     */
+    public function getLogs($sort = 1)
+    {
+        $Logs = [];
+        foreach ($this->travelLogs($sort) as $Log){
+            $Logs[] = $Log;
+        }
+        return $Logs;
+    }
+
     abstract public function save();
 }
