@@ -92,7 +92,7 @@ trait logPlugin
      */
     public function travelLogs($sort = 1)
     {
-        yield $this->logs($sort);
+        return $this->logs($sort);
     }
 
     /**
