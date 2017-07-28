@@ -81,6 +81,7 @@ trait logPlugin
         }
         foreach ($logDataSet as $logData) {
             $Log = new Log($logData);
+            $Log->dateText = $Log->dateText();
             yield $Log;
         }
     }
