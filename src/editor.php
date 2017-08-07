@@ -115,10 +115,12 @@ trait editor
         $data = $data ?: $this->_optional($key);
         foreach ($data as $option_value => $option_label) {
             $checked = (string)$value === (string)$option_value ? " checked='checked'" : "";
-            echo "<label class='radio-inline'>";
-            echo "<input type=radio name=\"{$key}\" value=\"{$option_value}\" id=\"{$key}{$option_value}\"{$checked} />";
+            echo "<div class=\"form-check radio\">";
+            echo "<label class='form-check-label'>";
+            echo "<input class='form-check-input' type=radio name=\"{$key}\" value=\"{$option_value}\" id=\"{$key}{$option_value}\"{$checked} />";
             echo $option_label;
             echo "</label>";
+            echo "</div>";
         }
     }
 
@@ -131,10 +133,12 @@ trait editor
             else
                 $checked = "";
 
-            echo "<label class='checkbox-inline'>";
-            echo "<input type=checkbox name=\"{$key}[]\" value=\"{$option_value}\"{$checked} />";
+            echo "<div class=\"form-check checkbox\">";
+            echo "<label class='form-check-label'>";
+            echo "<input class='form-check-input' type=checkbox name=\"{$key}[]\" value=\"{$option_value}\"{$checked} />";
             echo $option_label;
             echo "</label>";
+            echo "</div>";
         }
     }
 
@@ -163,8 +167,8 @@ trait editor
 
     protected function _input_bool($key, $value)
     {
-        echo "<label class='radio-inline'><input type=radio name=\"{$key}\" value='0' " . ($value === false ? "checked='checked'" : "") . ">否</label>";
-        echo "<label class='radio-inline'><input type=radio name=\"{$key}\" value='1' " . ($value === true ? "checked='checked'" : "") . ">是</label>";
+        echo "<div class=\"form-check radio\"><label class='form-check-label'><input class=\"form-check-input\" type=radio name=\"{$key}\" value='0' " . ($value === false ? "checked='checked'" : "") . "> 否</label></div>";
+        echo "<div class=\"form-check radio\"><label class='form-check-label'><input class=\"form-check-input\" type=radio name=\"{$key}\" value='1' " . ($value === true ? "checked='checked'" : "") . "> 是</label></div>";
     }
 
     protected function _input_string($key, $value)
@@ -181,7 +185,7 @@ trait editor
 
     protected function _input_file($key, $value)
     {
-        echo "<input type=file name=\"{$key}\" value=\"\">";
+        echo "<input class='form-control' type=file name=\"{$key}\" value=\"\">";
     }
 
     protected function _input_hidden($key, $value)
